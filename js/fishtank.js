@@ -25,6 +25,7 @@ var url = "https://api.particle.io/v1/devices/" + deviceID + "/mover";
 var urlStatus = "https://api.particle.io/v1/devices/" + deviceID + "/status";
 
 $("#btnAlimentar").click(function() {
+    checkStatus();
     $("#btnAlimentar").prop("disabled", "true");
     $("#btnAlimentar").html("Alimentando...");
     $.post(url, {params: "", access_token: accessToken }, function(response){
