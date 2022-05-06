@@ -1,48 +1,90 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alimentador de peces</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> <!-- https://fonts.google.com/ -->
+    <link rel="stylesheet" href="fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="css/magnific-popup.css"> 
+    <link rel="stylesheet" href="css/templatemo-ocean-vibes.css"> 
+    <link rel="stylesheet" href="css/fishtank.css"> 
+<!--
+    
+TemplateMo 554 Ocean Vibes
 
-<script>
-var accessToken = "948cd50dac2048f7ddbb6f047c27918e50b55741";
-var deviceID = "3d003d000c47353136383631"
-var url = "https://api.particle.io/v1/devices/" + deviceID + "/led";
+https://templatemo.com/tm-554-ocean-vibes
 
-
-function callback(data){
-	
-	$("#buttonOn").css("background-color", "").css("color", "");
-	$("#buttonOff").css("background-color", "").css("color", "");
-
-	let result = JSON.parse(data);
-	if(result.return_value == 1){
-		$("#buttonOn").css("background-color", "green").css("color", "white");
-	}else if(result.return_value == 0){
-		$("#buttonOff").css("background-color", "red").css("color", "white");
-	}else{
-		alert("Respuesta inválida");
-	}
-}
-
-
-function switchOn()
-{
-	$.post(url, {params: "on", access_token: accessToken }, callback);
-}  
-
-function switchOff()
-{
-	$.post(url, {params: "off", access_token: accessToken }, callback);
-}  
-
-</script>
-</head>	
-
+-->
+</head>
 <body>
+    <div class="grid">
+        <div class="tm-container width-6">
+            <header class="tm-site-header">
+                <h1 class="tm-mt-0 tm-mb-15"><span class="tm-color-primary">Proyecto</span> <span class="tm-color-gray-2">alimentador</span></h1>
+                <em class="tm-tagline tm-color-light-gray">para peces</em>
+            </header>
 
-<h1>On/Off Control</h1>	
-	
-<input type="button" id="buttonOn" onClick="switchOn()" value="ON"/>
-<input type="button" id="buttonOff" onClick="switchOff()" value="OFF"/>
-	
+            <div id="fish-tank">
+                <div id="bubble-field"></div>
+                <div class="plant">
+                    <div class="leaf-1"></div>
+                </div>
+                <div class="fish">
+                    <div class="top-fin"></div>
+                    <div class="fish-body"></div>
+                    <div class="tail-fin"></div>
+                    <div class="side-fin"></div>
+                    <div class="scale scale-1"></div>
+                    <div class="scale scale-2"></div>
+                    <div class="scale scale-3"></div>
+                </div>  
+                <div class="fish blue-fish">
+                    <div class="top-fin"></div>
+                    <div class="fish-body"></div>
+                    <div class="tail-fin"></div>
+                    <div class="side-fin"></div>
+                    <div class="scale scale-1"></div>
+                    <div class="scale scale-2"></div>
+                    <div class="scale scale-3"></div>
+                </div>
+
+                <div class="food">
+                    <div class="food-piece food-piece-1"></div>
+                    <div class="food-piece food-piece-2"></div>
+                    <div class="food-piece food-piece-3"></div>
+                    <div class="food-piece food-piece-4"></div>
+                    <div class="food-piece food-piece-5"></div>
+                    <div class="food-piece food-piece-6"></div>
+                    <div class="food-piece food-piece-7"></div>
+                    <div class="food-piece food-piece-8"></div>
+                    <div class="food-piece food-piece-9"></div>
+                    <div class="food-piece food-piece-10"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="tm-container width-6">
+            <header class="tm-site-header">
+                <em class="tm-tagline tm-color-light-black" style="margin: 0;">El dispositivo se encuentra: <i id="status"></i></em>
+            </header>
+            <nav class="tm-main-nav">
+                <ul id="inline-popups">
+                    <li class="tm-nav-item">
+                        <button data-effect="mfp-move-from-top" class="tm-nav-link button" id="btnAlimentar">
+                            Alimentar
+                        </button>                
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    <div>
+
+    <script
+        src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+    <script src="js/fishtank.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
