@@ -28,8 +28,7 @@ $("#btnAlimentar").click(function() {
     checkStatus();
     $("#btnAlimentar").prop("disabled", "true");
     $("#btnAlimentar").html("Alimentando...");
-    $.post(url, {params: "", access_token: accessToken }, function(response){
-        let result = JSON.parse(response);
+    $.post(url, {params: "1", access_token: accessToken }, function(result){
         if(result.return_value == 1){
             $(".food").toggleClass("animation");
             setTimeout(() => { 
@@ -51,8 +50,7 @@ $("#btnAlimentar").click(function() {
 });
 
 function checkStatus(){
-    $.post(urlStatus, {params: "", access_token: accessToken }, function(response){
-        let result = JSON.parse(response);
+    $.post(urlStatus, {params: "1", access_token: accessToken }, function(result){
         if(result.return_value == 1){
             $("#status").html("Conectado");
             $("#status").css("color","green");
