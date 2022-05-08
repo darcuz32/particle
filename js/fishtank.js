@@ -21,14 +21,13 @@ for (i = 0; i < bubbleCount; i++) {
 
 var accessToken = "948cd50dac2048f7ddbb6f047c27918e50b55741";
 var deviceID = "3d003d000c47353136383631"
-var url = "https://api.particle.io/v1/devices/" + deviceID + "/mover";
-var urlStatus = "https://api.particle.io/v1/devices/" + deviceID + "/status";
+var url = "https://api.particle.io/v1/devices/" + deviceID ;
 
 $("#btnAlimentar").click(function() {
     checkStatus();
     $("#btnAlimentar").prop("disabled", "true");
     $("#btnAlimentar").html("Alimentando...");
-    $.post(url, {params: "1", access_token: accessToken }, function(result){
+    $.post(url+ "/mover", {params: "1", access_token: accessToken }, function(result){
         if(result.return_value == 1){
             $(".food").toggleClass("animation");
             setTimeout(() => { 
@@ -50,7 +49,7 @@ $("#btnAlimentar").click(function() {
 });
 
 function checkStatus(){
-    $.post(urlStatus, {params: "1", access_token: accessToken }, function(result){
+    $.post(url+ "/status", {params: "1", access_token: accessToken }, function(result){
         if(result.return_value == 1){
             $("#status").html("Conectado");
             $("#status").css("color","green");
@@ -65,7 +64,19 @@ function checkStatus(){
     
 }
 
+function getHour(){
+    $.get(url + "/hora", {access_token: accessToken}, getMinutes(response));
+}
+
+function getMinutes(prevResponse){
+    $.get(url + "/minutos", {access_token: accessToken}, function(response){
+        $("#hora").html(prevResponse.return_value+":"+response.return_value);
+    });
+}
+
 checkStatus();
+getHour();
+
 setTimeout(() => { 
     checkStatus();
 }, 10000);
