@@ -65,12 +65,14 @@ function checkStatus(){
 }
 
 function getHour(){
-    $.get(url + "/hora", {access_token: accessToken}, getMinutes(response));
+    $.get(url + "/hora", {access_token: accessToken}, function(response){
+        getMinutes(response);
+    });
 }
 
 function getMinutes(prevResponse){
     $.get(url + "/minutos", {access_token: accessToken}, function(response){
-        $("#hora").html(prevResponse.return_value+":"+response.return_value);
+        $("#hora").html(prevResponse.result+":"+response.result);
     });
 }
 
